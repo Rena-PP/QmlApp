@@ -7,7 +7,29 @@ Window {
     width: 640
     height: 480
     visible: true
-    title: qsTr("Hello World")
+    title: qsTr("Networking App")
+
+    function fetchJokes(url, callback) {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            //XMLHttpRequest.HEADERS_RECEIVED
+            //XMLHttpRequest.DONE
+            if (xhr.readyState === XMLHttpRequest.HEADERS_RECEIVED){
+                console.log("HEADERS RECEIVED")
+            }
+            else if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status == 200) {
+                    callback(xhr.responseText.toString())
+                    console.log("Norm")
+                } else {
+                    callback(null)
+                    console.log("Ne norma")
+                }
+            }
+        }
+        xhr.open("GET", url)
+        xhr.send()
+    }
 
     ColumnLayout{
         anchors.fill: parent
