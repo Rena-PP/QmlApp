@@ -40,7 +40,7 @@ DISTNAME      = QmlApp1.0.0
 DISTDIR = /home/rena/Projects/Qt/QmlApp/build/Desktop_Qt_5_15_2_GCC_64bit-Debug/.tmp/QmlApp1.0.0
 LINK          = g++
 LFLAGS        = -Wl,-rpath,/home/rena/Qt/5.15.2/gcc_64/lib
-LIBS          = $(SUBLIBS) /home/rena/Qt/5.15.2/gcc_64/lib/libQt5Quick.so /home/rena/Qt/5.15.2/gcc_64/lib/libQt5Gui.so /home/rena/Qt/5.15.2/gcc_64/lib/libQt5QmlModels.so /home/rena/Qt/5.15.2/gcc_64/lib/libQt5Qml.so /home/rena/Qt/5.15.2/gcc_64/lib/libQt5Network.so /home/rena/Qt/5.15.2/gcc_64/lib/libQt5Core.so -lGL -lpthread   
+LIBS          = $(SUBLIBS) -L/home/rena/openssl-1.1.1q -lcrypto -lssl /home/rena/Qt/5.15.2/gcc_64/lib/libQt5Quick.so /home/rena/Qt/5.15.2/gcc_64/lib/libQt5Gui.so /home/rena/Qt/5.15.2/gcc_64/lib/libQt5QmlModels.so /home/rena/Qt/5.15.2/gcc_64/lib/libQt5Qml.so /home/rena/Qt/5.15.2/gcc_64/lib/libQt5Network.so /home/rena/Qt/5.15.2/gcc_64/lib/libQt5Core.so -lGL -lpthread   
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -245,6 +245,7 @@ DIST          = /home/rena/Qt/5.15.2/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/rena/Qt/5.15.2/gcc_64/mkspecs/features/qt_config.prf \
 		/home/rena/Qt/5.15.2/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/home/rena/Qt/5.15.2/gcc_64/mkspecs/features/spec_post.prf \
+		../../.qmake.stash \
 		/home/rena/Qt/5.15.2/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/home/rena/Qt/5.15.2/gcc_64/mkspecs/features/toolchain.prf \
 		/home/rena/Qt/5.15.2/gcc_64/mkspecs/features/default_pre.prf \
@@ -466,6 +467,7 @@ Makefile: ../../QmlApp.pro /home/rena/Qt/5.15.2/gcc_64/mkspecs/linux-g++/qmake.c
 		/home/rena/Qt/5.15.2/gcc_64/mkspecs/features/qt_config.prf \
 		/home/rena/Qt/5.15.2/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/home/rena/Qt/5.15.2/gcc_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/home/rena/Qt/5.15.2/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/home/rena/Qt/5.15.2/gcc_64/mkspecs/features/toolchain.prf \
 		/home/rena/Qt/5.15.2/gcc_64/mkspecs/features/default_pre.prf \
@@ -678,6 +680,7 @@ Makefile: ../../QmlApp.pro /home/rena/Qt/5.15.2/gcc_64/mkspecs/linux-g++/qmake.c
 /home/rena/Qt/5.15.2/gcc_64/mkspecs/features/qt_config.prf:
 /home/rena/Qt/5.15.2/gcc_64/mkspecs/linux-g++/qmake.conf:
 /home/rena/Qt/5.15.2/gcc_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /home/rena/Qt/5.15.2/gcc_64/mkspecs/features/exclusive_builds.prf:
 /home/rena/Qt/5.15.2/gcc_64/mkspecs/features/toolchain.prf:
 /home/rena/Qt/5.15.2/gcc_64/mkspecs/features/default_pre.prf:

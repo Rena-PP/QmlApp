@@ -4,10 +4,10 @@ import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.4
 
 Window {
-    width: 640
+    width: 720
     height: 480
     visible: true
-    title: qsTr("Networking App")
+    title: qsTr("Hello World")
 
     function fetchJokes(url, callback) {
         var xhr = new XMLHttpRequest();
@@ -31,14 +31,14 @@ Window {
         xhr.send()
     }
 
-    ColumnLayout{
+    ColumnLayout {
         anchors.fill: parent
         spacing: 0
+
 
         ListModel {
             id: mListModelId
         }
-
         ListView {
             id: mListViewId
             model: mListModelId
@@ -46,33 +46,44 @@ Window {
             Layout.fillWidth: true
             Layout.fillHeight: true
         }
-
-        SpinBox{
+        SpinBox {
             id: spinBoxId
             Layout.fillWidth: true
-            value:  10
-        }
+            value: 10
 
-        Button{
+        }
+        Button {
             id: buttonId
             Layout.fillWidth: true
             text: "Fetch"
             onClicked: {
-
+                console.log("https://v2.jokeapi.dev/joke/Any?type=single&amount=" + spinBoxId.value)
+                fetchJokes("https://v2.jokeapi.dev/joke/Any?type=single&amount=" + spinBoxId.value, function(response) {
+                    if (response) {
+                        var object = JSON.parse(response)
+                        //console.log(object)
+                        object.jokes.forEach(function(element) {
+                            mListModelId.append({"joke" : element.joke,
+                                                 "id" : element.id,
+                                                 "category" : element.category})})
+                    } else {
+                        console.log("Something went wrong")
+                    }
+                }
+                )
             }
         }
 
-
         Component {
-            id:
+            id: delegateId
             Row {
                 width: parent.width
-                spacing: 5
+                spacing:0
 
                 Rectangle {
                     id: rectangleIdId
                     width: parent.width * 0.1
-                    height: Math.max(textIdId.implicitHeight + 30, 50)
+                    height: rectangleIdJoke.height
                     color: "beige"
                     border.color: "yellowgreen"
                     radius: 5
@@ -93,7 +104,7 @@ Window {
 
                 Rectangle {
                     id: rectangleIdJoke
-                    width: parent.width * 0.7
+                    width: parent.width * 0.75
                     height: Math.max(textIdJoke.implicitHeight + 30, 50)
                     color: "beige"
                     border.color: "yellowgreen"
@@ -114,8 +125,8 @@ Window {
 
                 Rectangle {
                     id: rectangleIdCategory
-                    width: parent.width * 0.2
-                    height: Math.max(textIdCategory.implicitHeight + 30, 50)
+                    width: parent.width * 0.15
+                    height: rectangleIdJoke.height
                     color: "beige"
                     border.color: "yellowgreen"
                     radius: 5
@@ -136,4 +147,6 @@ Window {
             }
         }
     }
+
+
 }
